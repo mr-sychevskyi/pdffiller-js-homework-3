@@ -28,6 +28,7 @@ const initGame = () => {
 initGame();
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
+  const LIMIT_VALUE = +(document.querySelector('#game-limit').value) || 100;
   const diceValues = [];
 
   const dice = [...diceElements].reduce((sum, item) => {
@@ -48,7 +49,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     current += dice;
     document.getElementById('current-' + activePlayer).textContent = current;
 
-    if (scores[activePlayer] + current >= 20) {
+    if (scores[activePlayer] + current >= LIMIT_VALUE) {
       alert(`Player ${activePlayer} won!!!`);
     }
   }
