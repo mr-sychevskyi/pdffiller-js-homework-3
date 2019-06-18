@@ -13,16 +13,16 @@
         <div class="wrapper clearfix">
             <div class="player-0-panel active">
                 <div class="player-name" id="name-0">Игрок 1</div>
-                <div class="player-score" id="score-0">43</div>
+                <div class="player-score" id="score-0"></div>
                 <div class="player-current-box">
                     <div class="player-current-label">Текущий</div>
-                    <div class="player-current-score" id="current-0">11</div>
+                    <div class="player-current-score" id="current-0">0</div>
                 </div>
             </div>
 
             <div class="player-1-panel">
                 <div class="player-name" id="name-1">Игрок 2</div>
-                <div class="player-score" id="score-1">72</div>
+                <div class="player-score" id="score-1"></div>
                 <div class="player-current-box">
                     <div class="player-current-label">Текущий</div>
                     <div class="player-current-score" id="current-1">0</div>
@@ -32,7 +32,6 @@
             <button class="btn-new"><i class="ion-ios-plus-outline"></i>Новая игра</button>
             <button class="btn-roll"><i class="ion-ios-loop"></i>Бросок</button>
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Сохранить</button>
-
             <div class="game-limit">
                 <label class="game-limit__label" for="game-limit">
                     <i class="ion-ios-speedometer-outline"></i>Игровой лимит:
@@ -40,10 +39,15 @@
                 <input class="game-limit__input" id="game-limit" name="game-limit" type="number"
                     value="100" placeholder="Введите лимит">
             </div>
+            <button class="btn-show-winners"><i class="ion-ios-star-outline"></i>Победители</button>
 
             <div class="dice-wrapper">
                 <img class="dice" src="dice-5.png" alt="Dice">
                 <img class="dice" src="dice-5.png" alt="Dice" >
+            </div>
+
+            <div class="winners hidden">
+                <ul class="winners-list"></ul>
             </div>
         </div>
 

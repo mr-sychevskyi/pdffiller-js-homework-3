@@ -134,8 +134,9 @@ i {
 }
 
 .btn-new { top: 45px;}
-.btn-roll { top: 403px;}
-.btn-hold { top: 467px;}
+.btn-roll { top: 380px;}
+.btn-hold { top: 440px;}
+.btn-show-winners { top: 560px; }
 
 .dice-wrapper {
     position: absolute;
@@ -153,7 +154,7 @@ i {
 
 .game-limit {
     position: absolute;
-    bottom: 45px;
+    top: 500px;
     left: 50%;
     transform: translateX(-50%);
 
@@ -196,3 +197,32 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+.winners {
+    float: left;
+    width: 100%;
+    padding: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.winners-list {
+    width: 200px;
+    margin: 0 auto;
+    list-style: none;
+
+    font-family: Lato, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #555;
+}
+
+.winners-list__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: capitalize;
+}
+
+.hidden {
+    display: none;
+}
