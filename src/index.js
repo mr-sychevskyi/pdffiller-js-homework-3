@@ -9,6 +9,9 @@ GAME RULES:
 
 */
 
+import Gamer from './scripts/gamer.js';
+import {uniq, generateId, getWinners} from './scripts/functions';
+
 const RESET_VALUE = 2;
 const diceWrapper = document.querySelector('.dice-wrapper');
 const diceElements = document.querySelectorAll('.dice');
@@ -28,37 +31,13 @@ let winnersList = Object.keys(winnersData) || [];
 const player1Name = prompt('Пожалуйста, игрок №1, введите Ваше имя пользователя') || 'Игрок 1';
 const player2Name = prompt('Пожалуйста, игрок №2, введите Ваше имя пользователя') || 'Игрок 2';
 
-// OBJECT GAMER
-const Gamer = function (name, score, id, isExists = true) {
-  this.name = name;
-  this.score = score;
-  this.id = id;
-  this.isExists = isExists;
-};
-
-Gamer.prototype.setName = function (newName) {
-  this.name = newName;
-};
-
-Gamer.prototype.getScore = function () {
-  return this.score;
-};
-
-Gamer.prototype.setScore = function (newScore) {
-  this.score += newScore;
-};
-
-Gamer.prototype.resetScore = function () {
-  this.score = 0;
-};
-
 const player1 = new Gamer(player1Name);
 const player2 = new Gamer(player2Name);
 
 players.push(player1);
 players.push(player2);
 
-// FUNCTIONS
+// START GAME
 const initGame = () => {
   current = 0;
   player1.resetScore(0);
@@ -74,19 +53,6 @@ const initGame = () => {
   limitField.value = '100';
 };
 
-const uniq = arr => arr.filter((item, index) => arr.indexOf(item) === index);
-
-const generateId = name => {
-  const currIndex = name.indexOf('-');
-
-  if (currIndex < 0) {
-    return `${name}-${new Date().valueOf()}`;
-  } else {
-    let currId = name.slice(currIndex + 1);
-    return `${name.slice(0, currIndex)}-${new Date().valueOf()}`;
-  }
-};
-
 const changePlayer = () => {
   current = 0;
   document.getElementById('current-' + activePlayer).textContent = 0;
@@ -94,30 +60,6 @@ const changePlayer = () => {
   activePlayer = +!activePlayer;
   diceWrapper.style.display = 'none';
   document.querySelector(`.player-${activePlayer}-panel`).classList.toggle('active');
-};
-
-const getWinners = () => {
-  const winnersListUI = document.querySelector('.winners-list');
-  const winnersData = JSON.parse(localStorage.getItem('winners')) || {};
-  const winners = Object.keys(winnersData).sort((a, b) => winnersData[b] - winnersData[a]);
-
-  if (winnersListUI.childNodes.length) {
-    [...winnersListUI.querySelectorAll('.winners-list__item')].forEach(item => item.remove());
-  }
-
-  winners.map(winner => {
-    const winnersItem = document.createElement('li');
-    winnersItem.classList.add('winners-list__item');
-    winnersListUI.appendChild(winnersItem);
-    const winnersName = document.createElement('h5');
-    winnersName.classList.add('winners-list__name');
-    winnersName.innerText = winner;
-    winnersItem.appendChild(winnersName);
-    const winnersScore = document.createElement('span');
-    winnersScore.classList.add('winners-list__score');
-    winnersScore.innerText = winnersData[winner];
-    winnersItem.appendChild(winnersScore);
-  });
 };
 
 initGame();
@@ -139,7 +81,7 @@ btnRoll.addEventListener('click', function () {
     const diceCurr = Math.floor(Math.random() * 6) + 1;
 
     diceValues.push(diceCurr);
-    item.src = `dice-${diceCurr}.png`;
+    item.src = `../src/images/dice-${diceCurr}.png`;
 
     return sum + diceCurr;
   }, 0);
